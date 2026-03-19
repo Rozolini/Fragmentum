@@ -1,0 +1,20 @@
+[workspace]
+members = [
+    "crates/fragmentum-math",
+    "crates/fragmentum-meta",
+    "crates/fragmentum-storage",
+    "crates/fragmentum-fuse"
+    # Інші крейти будемо додавати сюди по мірі їх створення
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Твоє Ім'я <твій.email@example.com>"]
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"

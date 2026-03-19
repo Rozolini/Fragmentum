@@ -1,0 +1,15 @@
+[package]
+name = "fragmentum-fuse"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "Virtual File System gateway and POSIX translation layer"
+
+[dependencies]
+# Internal workspace dependencies (Core Engine)
+fragmentum-math = { path = "../fragmentum-math" }
+fragmentum-meta = { path = "../fragmentum-meta" }
+fragmentum-storage = { path = "../fragmentum-storage" }
+
+# Async runtime for coordinating I/O and network-like operations
+tokio = { version = "1.32", features = ["full"] }

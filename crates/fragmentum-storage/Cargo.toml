@@ -1,0 +1,13 @@
+[package]
+name = "fragmentum-storage"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "Async storage node engine with background bit-rot detection"
+
+[dependencies]
+# Asynchronous I/O for high-concurrency storage operations
+tokio = { version = "1.32", features = ["full"] }
+
+# High-performance CRC32 implementation for data integrity and scrubbing
+crc32fast = "1.3"

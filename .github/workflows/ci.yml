@@ -1,0 +1,40 @@
+name: CI
+
+# Trigger the workflow on pushes and pull requests targeting the main branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Force cargo to output colorized text in the CI logs for better readability
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository source code
+      - uses: actions/checkout@v4
+
+      # Install the stable Rust toolchain along with formatting and linting tools
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      # Enforce strict code formatting
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+      # Run Rust's official linter to catch common mistakes and enforce idiomatic code
+      - name: Run Clippy
+        run: cargo clippy --workspace -- -D warnings
+
+      # Execute the test suite across the entire workspace.
+      # Release mode is enforced to accurately benchmark CPU-intensive operations (e.g., Galois field math).
+      # The --nocapture flag ensures that throughput metrics (println!) are visible in the GitHub Actions logs.
+      - name: Run all tests (Release Mode for Benchmarks)
+        run: cargo test --release --workspace -- --nocapture

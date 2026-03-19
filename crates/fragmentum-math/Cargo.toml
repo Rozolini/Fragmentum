@@ -1,0 +1,9 @@
+[package]
+name = "fragmentum-math"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "Erasure coding (Reed-Solomon) and Galois Field math for Fragmentum"
+
+[dependencies]
+# Zero-dependency crate: Relying purely on the Rust Standard Library for mathematical operations.

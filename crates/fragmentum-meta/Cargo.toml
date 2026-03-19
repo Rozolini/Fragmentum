@@ -1,0 +1,10 @@
+[package]
+name = "fragmentum-meta"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "High-performance thread-safe metadata store for Fragmentum"
+
+[dependencies]
+# Standard UUID implementation for unique chunk identification (v4/random)
+uuid = { version = "1.7", features = ["v4"] }
